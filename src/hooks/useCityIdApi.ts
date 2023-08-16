@@ -1,6 +1,6 @@
 import axios from "axios";
-import { APIRoutes } from "../../../api/api-routes.enum";
-import putToken from '../../../api/putToken';
+import { APIRoutes } from "../api/api-routes.enum";
+import putToken from '../api/putToken';
 
 type APIURLParams = {
   latitude: number;
@@ -9,17 +9,14 @@ type APIURLParams = {
 
 interface Weather {
   id: number; 
-  name: string;
-  state: string;
-  country: string;
 }
 
-export async function fetchWeatherApi({
+export async function fetchCityId({
   latitude,
   longitude
 }: APIURLParams): Promise<Weather> {
   const resource = APIRoutes.BASE_URL
-  const mount = resource + APIRoutes.USER_LOCALE_BY_LATITUDE_AND_LONGITUDE.replace(
+  const mountUrl = resource + APIRoutes.USER_LOCALE_BY_LATITUDE_AND_LONGITUDE.replace(
     ':userLat',
     latitude.toString(),
   ).replace(
@@ -27,7 +24,7 @@ export async function fetchWeatherApi({
     longitude.toString()
   );
 
-  const api = putToken(mount);
+  const api = putToken(mountUrl);
 
   try {
     const response = await axios.get(api.toString());
@@ -36,9 +33,6 @@ export async function fetchWeatherApi({
     }
     const weatherData: Weather = {
       id: response.data.id,
-      name: response.data.name,
-      state: response.data.state,
-      country: response.data.country,
     };
     return weatherData;
   } catch (error) {
