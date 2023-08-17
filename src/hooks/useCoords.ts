@@ -7,8 +7,8 @@ export async function useCoords() {
       const position = await getCurrentPositionAsync({
         accuracy: LocationAccuracy.High,
       });
-      const { latitude, longitude } = position.coords;
-      return { latitude, longitude };
+      const {latitude, longitude} = position.coords;
+      return {latitude, longitude};
     } catch (error) {
       console.log(error.code, error.message);
       return null;
@@ -18,4 +18,3 @@ export async function useCoords() {
     return null;
   }
 }
-//Ler sobre hook

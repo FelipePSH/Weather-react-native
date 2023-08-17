@@ -3,15 +3,15 @@ import { APIRoutes } from "../api/api-routes.enum";
 import putToken from '../api/putToken';
 
 type APIURLParams = {
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
 };
 
 interface Weather {
   id: number; 
 }
 
-export async function fetchCityId({
+export async function useCityIdApi({
   latitude,
   longitude
 }: APIURLParams): Promise<Weather> {

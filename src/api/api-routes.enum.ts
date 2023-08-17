@@ -7,6 +7,6 @@ export enum APIRoutes {
   FIFTEEN_DAYS_FORECAST =
    '/api/v2/forecast/geo/days/15?latitude=:userLat&longitude=:userLong&token=:token',
   CURRENT_WEATHER =
-   '/api/v2/forecast/geo/days/15?latitude=:userLat&longitude=:userLong&token=:token',
+   '/api/v1/weather/locale/:id/current?token=:token',
 }
 //TODO: CRIAR VARIAVEL DE AMBIENTE PARA O TOKEN NAO FICAR PUBLICO NO GIT
