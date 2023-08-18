@@ -14,10 +14,6 @@ interface TodayWeatherData {
     sensation: number;
     date: string;
   };
-  icon: string,
-  sensation: string,
-  date: Date
-
 }
 
 export default TodayWeatherData;
