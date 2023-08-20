@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useCoords } from "../../../hooks/useCoords";
 import { useCityIdApi } from "../../../hooks/useCityIdApi";
+import { useRegisterCityApi } from "~/hooks/useRegisterCityApi";
 import { APIRoutes } from "../../../api/api-routes.enum";
 import axios from "axios";
-import TodayWeatherData from "../models/TodayWeatherData";
+import TodayWeatherData from "../../models/TodayWeatherData";
 
 const useCurrentWeather = (): TodayWeatherData => {
   const coords = useCoords();
@@ -12,8 +13,7 @@ const useCurrentWeather = (): TodayWeatherData => {
   const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
-    //Com a Latitude e a longitude é necessário pegar o id da cidade na api
-    const fetchData = async () => {
+    const getCityId = async () => {
       if (coords) {
         try {
           const cityIdResponse = await useCityIdApi({
@@ -28,29 +28,25 @@ const useCurrentWeather = (): TodayWeatherData => {
         useCoords()
       }
     };
-    fetchData();
+    getCityId();
   }, [coords]);
 
-
-  /*useEffect(() => {
-    //Com o ID da cidade é necessario registrar a cidade no token
-    const fetchData = async () => {
+  useEffect(() => {
+    const registerCity = async () => {
       if (cityId) {
         try {
-          const cityIdResponse = await useRegisterCityApi(cityId.toString())
-          setapiRegisterReturn(cityIdResponse)
+          const apiRegisterReturn = await useRegisterCityApi(cityId.toString())
+          setapiRegisterReturn(apiRegisterReturn)
         } catch (error) {
           console.error('Error register:', error);
         }
       }
     };
-    fetchData();
-  }, [cityId]);  */
-
-  //Com a cidade registrada, é possível realizar a requizição
-  // novo useState para gerenciar o resultado vindo da API de registro
+    registerCity();
+  }, [cityId]); 
+  
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchTodayWeather = async () => {
       const CURRENT_WEATHER_URI = APIRoutes.BASE_URL + APIRoutes.CURRENT_WEATHER.replace(
         ':token',
         APIRoutes.TOKEN
@@ -69,8 +65,8 @@ const useCurrentWeather = (): TodayWeatherData => {
         console.error('Error fetching weather:', error);
       }
     };
-    fetchData();
-  }, [cityId]);
+    fetchTodayWeather();
+  }, [apiRegisterReturn]);
 
   return weatherData;
 };

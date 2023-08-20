@@ -1,13 +1,17 @@
-import { NativeBaseProvider, StatusBar } from "native-base";
-import { Theme } from './src/theme/theme';
+import React from 'react';
+import { NativeBaseProvider, StorageManager, ColorMode, StatusBar, extendTheme, theme } from 'native-base';
+import Routes from './src/Routes';
 
-import Home from "./src/screens/home/Home";
+const config = {
+  dependencies: {
+    'linear-gradient': require('react-native-linear-gradient').default,
+  },
+};
 
 export default function App() {
   return (
-    <NativeBaseProvider theme={Theme}>
-      <StatusBar backgroundColor={Theme.colors.blue[800]} />
-      <Home/>
+    <NativeBaseProvider config={config} >
+      <Routes/>
     </NativeBaseProvider>
   );
 }

@@ -6,12 +6,14 @@ interface IconTextProps {
   iconName: string;
   iconColor?: string;
   text: string;
+  textColor: string
 }
 
 const IconText: React.FC<IconTextProps> = ({
   iconName,
   iconColor = 'coolGray.800',
   text,
+  textColor = 'coolGray.800'
 }) => {
   return (
     <HStack space={1}>
@@ -24,7 +26,7 @@ const IconText: React.FC<IconTextProps> = ({
           color: 'warmGray.50',
         }}
       />
-      <Text>{text}</Text>
+      <Text color={textColor}>{text}</Text>
     </HStack>
   );
 };

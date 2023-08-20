@@ -23,9 +23,7 @@ export async function useCityIdApi({
     ':userLong',
     longitude.toString()
   );
-
   const api = putToken(mountUrl);
-
   try {
     const response = await axios.get(api.toString());
     if (!response.data) {
