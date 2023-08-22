@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text, Icon } from 'native-base';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 
 interface ForecastCardProps {
   background: string;

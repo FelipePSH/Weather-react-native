@@ -5,13 +5,13 @@ import { Locale } from '../../components/Locale';
 import { PrincipalWeather } from '../../components/PrincipalWeather';
 import MockedTodayWeatherData from '../dummy/MockedTodayWeatherData';
 import { StyleSheet } from 'react-native';
-import useColorByIcon from '../../hooks/useColorByIcon';
+import configureLayoutByIcon from '../../hooks/configureLayoutByIcon';
 import { background } from 'native-base/lib/typescript/theme/styled-system';
 
 const WeatherDetails = ({ navigation }: any) => {
   const weatherData: MockedTodayWeatherData | null = new MockedTodayWeatherData();
-  const background = useColorByIcon(weatherData.data.icon);
-  const textColor = { color: background.color };
+  const configureLayoutByIconValues = configureLayoutByIcon(weatherData.data.icon);
+  const textColor = { color: configureLayoutByIconValues.textColor };
   return (
     <VStack flex={1} justifyContent={'center'} alignItems={'center'} padding={2} 
     backgroundColor={'blue.600'} safeArea>
@@ -22,7 +22,7 @@ const WeatherDetails = ({ navigation }: any) => {
           textColor={textColor.color}/>
           <VStack flex={1} justifyContent={'center'} alignItems={'center'} >
 
-              <Loading textColor={textColor.color} spinnerColor={background.color}/>
+              <Loading textColor={textColor.color} spinnerColor={configureLayoutByIconValues.textColor}/>
 
           </VStack>
         </>

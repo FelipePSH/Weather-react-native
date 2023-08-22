@@ -22,7 +22,7 @@ class MockedTodayWeatherData implements TodayWeatherData {
     humidity: 43,
     condition: "Poucas nuvens",
     pressure: 1008,
-    icon: "2n",
+    icon: "1",
     sensation: 27,
     date: "2017-10-01 12:37:00",
   };
